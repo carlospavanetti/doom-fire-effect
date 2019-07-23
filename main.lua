@@ -10,8 +10,9 @@ function love.load()
 end
 
 local function spread_fire(source)
+    local rand = math.random(3)
     fire_pixels[source - FIRE_WIDTH] = math.max(
-        0, fire_pixels[source] - 1
+        0, fire_pixels[source] - rand
     )
 end
 
@@ -28,7 +29,7 @@ local function set_temperature_color(temperature)
     -- local gray = 255 * temperature / 64.0
     local r = gray
     local g = math.max(0, 255 * (gray - 128) / (255 - 128))
-    local b = math.max(0, 255 * (gray - 192) / (255 - 192))
+    local b = math.max(0, 128 * (gray - 192) / (255 - 192))
     love.graphics.setColor(gray, g, b)
 end
 
