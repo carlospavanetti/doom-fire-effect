@@ -3,16 +3,16 @@ local fire_pixels = {}
 
 function love.load()
     for i = 1, FIRE_WIDTH * FIRE_HEIGHT do
-        local initial = (i > FIRE_WIDTH * (FIRE_HEIGHT - 1)) and 64 or 0
+        local initial = (i > FIRE_WIDTH * (FIRE_HEIGHT - 1)) and 256 or 0
         fire_pixels[i] = initial
     end
     love.graphics.setPointSize(2)
 end
 
 local function spread_fire(source)
-    local rand = math.random(4)
-    local dest = source - rand + 2
-    for i = 1, rand do
+    local rand = math.random(7)
+    local dest = source - rand + 3
+    for i = 1, 2 * rand do
         fire_pixels[dest - (i * FIRE_WIDTH)] = math.max(
             0, fire_pixels[source] - rand
         )
@@ -28,7 +28,7 @@ function love.update(dt)
 end
 
 local function set_temperature_color(temperature)
-    local gray = 4 * temperature
+    local gray = temperature
     -- local gray = 255 * temperature / 64.0
     local r = gray
     local g = math.max(0, 255 * (gray - 128) / (255 - 128))
