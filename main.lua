@@ -12,9 +12,11 @@ end
 local function spread_fire(source)
     local rand = math.random(4)
     local dest = source - rand + 2
-    fire_pixels[dest - FIRE_WIDTH] = math.max(
-        0, fire_pixels[source] - rand
-    )
+    for i = 1, rand do
+        fire_pixels[dest - (i * FIRE_WIDTH)] = math.max(
+            0, fire_pixels[source] - rand
+        )
+    end
 end
 
 function love.update(dt)
