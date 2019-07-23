@@ -10,8 +10,9 @@ function love.load()
 end
 
 local function spread_fire(source)
-    local rand = math.random(3)
-    fire_pixels[source - FIRE_WIDTH] = math.max(
+    local rand = math.random(4)
+    local dest = source - rand + 2
+    fire_pixels[dest - FIRE_WIDTH] = math.max(
         0, fire_pixels[source] - rand
     )
 end
