@@ -19,6 +19,15 @@ local function spread_fire(source)
     end
 end
 
+function love.keypressed(key)
+    if key == ' ' or key == 'space' then
+        for i = 1, FIRE_WIDTH do
+            local position = (FIRE_HEIGHT - 1) * FIRE_WIDTH + i
+            fire_pixels[position] = -1 * (fire_pixels[position] - 256)
+        end
+    end
+end
+
 function love.update(dt)
     for x = 1, FIRE_WIDTH do
         for y = 2, FIRE_HEIGHT do
