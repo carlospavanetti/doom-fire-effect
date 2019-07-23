@@ -3,7 +3,7 @@ local fire_pixels = {}
 
 function love.load()
     for i = 1, FIRE_WIDTH * FIRE_HEIGHT do
-        local initial = (i > FIRE_WIDTH * (FIRE_HEIGHT - 1)) and 36 or 0
+        local initial = (i > FIRE_WIDTH * (FIRE_HEIGHT - 1)) and 64 or 0
         fire_pixels[i] = initial
     end
     love.graphics.setPointSize(2)
@@ -24,9 +24,12 @@ function love.update(dt)
 end
 
 local function set_temperature_color(temperature)
-    -- local gray = 7 * temperature
-    local gray = 255 * temperature / 36.0
-    love.graphics.setColor(gray, gray, gray)
+    local gray = 4 * temperature
+    -- local gray = 255 * temperature / 64.0
+    local r = gray
+    local g = math.max(0, 255 * (gray - 128) / (255 - 128))
+    local b = math.max(0, 255 * (gray - 192) / (255 - 192))
+    love.graphics.setColor(gray, g, b)
 end
 
 local draw_points = love.graphics.point or love.graphics.points
